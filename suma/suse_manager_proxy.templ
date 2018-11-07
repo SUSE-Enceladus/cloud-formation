@@ -72,22 +72,25 @@
 
   "Mappings" : {
     "Regions2SUMa" : {
-      "us-east-1"      : { "HVM64": "ami-6ff1c079" },
-      "us-east-2"      : { "HVM64": "ami-e2537287" },
-      "us-west-2"      : { "HVM64": "ami-60a1b619" },
-      "us-west-1"      : { "HVM64": "ami-b0ecc0d0" },
-      "eu-central-1"   : { "HVM64": "ami-1e0ea871" },
-      "eu-west-1"      : { "HVM64": "ami-6bdd3812" },
-      "eu-west-2"      : { "HVM64": "ami-160d1b72" },
-      "ap-southeast-1" : { "HVM64": "ami-7909871a" },
-      "ap-northeast-1" : { "HVM64": "ami-c5dccda2" },
-      "ap-northeast-2" : { "HVM64": "ami-412bf42f" },
-      "ap-southeast-2" : { "HVM64": "ami-d61a09b5" },
-      "sa-east-1"      : { "HVM64": "ami-bc670dd0" },
-      "us-gov-west-1"  : { "HVM64": "ami-d9ad2bb8" },
-      "cn-north-1"     : { "HVM64": "ami-70e4351d" },
-      "ap-south-1"     : { "HVM64": "ami-6d5e2002" },
-      "ca-central-1"   : { "HVM64": "ami-34a01f50" }
+       "ap-northeast-1" : { "HVM64": "ami-03d28df21d1377886" },
+       "ap-northeast-2" : { "HVM64": "ami-0e69daeaddb4b9bef" },
+       "ap-northeast-3" : { "HVM64": "ami-0755582fc299eaad7" },
+       "ap-south-1"     : { "HVM64": "ami-047cf08690d758c5d" },
+       "ap-southeast-1" : { "HVM64": "ami-0ff62c32b984512d7" },
+       "ap-southeast-2" : { "HVM64": "ami-0205170b33fd917fa" },
+       "ca-central-1"   : { "HVM64": "ami-05741db2d39e8c7c2" },
+       "cn-north-1"     : { "HVM64": "ami-0003c3080f633bd0e" },
+       "cn-northwest-1" : { "HVM64": "ami-032e6a8a0f8ffbdfa" },
+       "eu-central-1"   : { "HVM64": "ami-07dbfa47d68d456ea" },
+       "eu-west-1"      : { "HVM64": "ami-0fda890ea415edce2" },
+       "eu-west-2"      : { "HVM64": "ami-03f927b2cc3feb580" },
+       "eu-west-3"      : { "HVM64": "ami-08c5020f57735eb3b" },
+       "sa-east-1"      : { "HVM64": "ami-08bbfd3e4d0151471" },
+       "us-east-1"      : { "HVM64": "ami-0f4f60c19bfbe0a18" },
+       "us-east-2"      : { "HVM64": "ami-0f66af8dfa291f98f" },
+       "us-gov-west-1"  : { "HVM64": "ami-08b72c69" },
+       "us-west-1"      : { "HVM64": "ami-01e31cd5e76d4f744" },
+       "us-west-2"      : { "HVM64": "ami-07e8fc267108c8111" }
     }
   },
 
@@ -99,6 +102,7 @@
         "SecurityGroups" : { "Ref" : "SecurityGroups" },
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : { "Fn::FindInMap" : [ "Regions2SUMa", { "Ref" : "AWS::Region" }, "HVM64" ] },
+        "Tags" : [ { "Key": "Name", "Value": "SUSE Manager Proxy" } ],
         "BlockDeviceMappings" : [
         {
           "DeviceName" : "/dev/sda1",
@@ -126,7 +130,7 @@
           "mount /dev/xvdd1 /var/cache/squid\n",
           "echo \"/dev/xvdd1 /var/cache/squid xfs defaults 1 1\" >> /etc/fstab\n",
           "echo \"RHN_PARENT='",  { "Ref" : "ParentServer" }, "'\" > /root/proxy-conf\n",
-          "echo \"VERSION='3.1'\" >> /root/proxy-conf\n",
+          "echo \"VERSION='3.2'\" >> /root/proxy-conf\n",
           "echo \"TRACEBACK_EMAIL='",
           { "Ref" : "TracebackEMail" },
           "'\" >> /root/proxy-conf\n",
