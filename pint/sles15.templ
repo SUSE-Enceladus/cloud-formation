@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "SLES12 SP2 on-demand auto AMI ID",
+  "Description" : "SLES 15 on-demand auto AMI ID",
 
   "Parameters" : {
     "KeyName" : {
@@ -10,7 +10,7 @@
       "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
     },
     "SecurityGroups" : {
-      "Description" : "EC2 SecurityGroups for SUSE Linux Enterprise Server instance",
+      "Description" : "EC2 SecurityGroups SUSE Linux Enterprise Server instance",
       "Type" : "List<AWS::EC2::SecurityGroup::GroupName>",
       "ConstraintDescription" : "must be an existing SecurityGroup"
     },
@@ -23,7 +23,7 @@
   },
 
   "Resources" : {
-    "SLES12Instance" : {
+    "SLESInstance" : {
       "Type" : "AWS::EC2::Instance",
       "Properties" : {
         "InstanceType"   : { "Ref" : "ServerInstanceType" },
@@ -85,7 +85,7 @@
         "Architecture": "x86_64",
         "InstanceType": "hvm",
         "ECS": "0",
-        "OS": "suse-sles-12-sp2"
+        "OS": "suse-sles-15"
       }
     },
 
@@ -125,7 +125,7 @@
   "Outputs" : {
     "HostIP" : {
       "Description" : "Server public IP address",
-      "Value" : { "Fn::GetAtt" : [ "SLES12Instance", "PublicIp" ] }
+      "Value" : { "Fn::GetAtt" : [ "SLESInstance", "PublicIp" ] }
     }
   }
 }
