@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "SUSE Manager",
+  "Description" : "SUSE Manager 3.2 with storage setup",
 
   "Parameters" : {
     "KeyName" : {
@@ -35,22 +35,25 @@
 
   "Mappings" : {
     "AWSRegion2AMI" : {
-      "us-east-1"      : { "HVM64": "ami-edf1c0fb" },
-      "us-east-2"      : { "HVM64": "ami-bd5978d8" },
-      "us-west-2"      : { "HVM64": "ami-b9a0b7c0" },
-      "us-west-1"      : { "HVM64": "ami-b1ecc0d1" },
-      "eu-central-1"   : { "HVM64": "ami-df00a6b0" },
-      "eu-west-1"      : { "HVM64": "ami-3ed03547" },
-      "eu-west-2"      : { "HVM64": "ami-9d0c1af9" },
-      "ap-southeast-1" : { "HVM64": "ami-c80b85ab" },
-      "ap-northeast-1" : { "HVM64": "ami-eadacb8d" },
-      "ap-northeast-2" : { "HVM64": "ami-032cf36d" },
-      "ap-southeast-2" : { "HVM64": "ami-67140704" },
-      "sa-east-1"      : { "HVM64": "ami-e47a1088" },
-      "us-gov-west-1"  : { "HVM64": "ami-a1ab2dc0" },
-      "cn-north-1"     : { "HVM64": "ami-4de73620" },
-      "ap-south-1"     : { "HVM64": "ami-a1631dce" },
-      "ca-central-1"   : { "HVM64": "ami-3ca01f58" }
+      "ap-northeast-1" : { "HVM64": "ami-0a8608bea80fab737" },
+      "ap-northeast-2" : { "HVM64": "ami-04375e9d6a5f3d2a4" },
+      "ap-northeast-3" : { "HVM64": "ami-0ec3db1c3ba023e1b" },
+      "ap-south-1"     : { "HVM64": "ami-0014c9e47a05c7ea3" },
+      "ap-southeast-1" : { "HVM64": "ami-03e042cc9c0d960cd" },
+      "ap-southeast-2" : { "HVM64": "ami-0c39c6f7aabf4ae5b" },
+      "ca-central-1"   : { "HVM64": "ami-05e555bfdab6e4b65" },
+      "cn-north-1"     : { "HVM64": "ami-0639454b489441b65" },
+      "cn-northwest-1" : { "HVM64": "ami-0caba06851a15c829" },
+      "eu-central-1"   : { "HVM64": "ami-058489e74cd4ff554" },
+      "eu-west-1"      : { "HVM64": "ami-0d2195ef92e8796a7" },
+      "eu-west-2"      : { "HVM64": "ami-0beb0ea5945aef6f7" },
+      "eu-west-3"      : { "HVM64": "ami-032ee80e8b2bf6b3a" },
+      "sa-east-1"      : { "HVM64": "ami-0494dc2d948f798c5" },
+      "us-east-1"      : { "HVM64": "ami-04b9db133edf582bd" },
+      "us-east-2"      : { "HVM64": "ami-0444462dcfbb3c377" },
+      "us-gov-west-1"  : { "HVM64": "ami-d1bf24b0" },
+      "us-west-1"      : { "HVM64": "ami-0d63f85dd124c86d5" },
+      "us-west-2"      : { "HVM64": "ami-0e7fcda8af29c235e" }
     }
   },
 
@@ -62,6 +65,7 @@
         "SecurityGroups" : { "Ref" : "SecurityGroups" },
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : { "Fn::FindInMap" : [ "AWSRegion2AMI", { "Ref" : "AWS::Region" }, "HVM64" ] },
+        "Tags" : [ { "Key": "Name", "Value": "SUSE Manager Server" } ],
         "BlockDeviceMappings" : [
         {
           "DeviceName" : "/dev/sda1",
